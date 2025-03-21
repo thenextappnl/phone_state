@@ -34,7 +34,11 @@ class PhoneStateHandler: NSObject, FlutterStreamHandler, CXCallObserverDelegate 
             || (call.hasConnected == true && call.hasEnded == false && call.isOnHold == false) {
             return .CALL_STARTED
         } else if call.hasEnded == true {
-            return .CALL_ENDED
+            if call.hasConnected {
+                return .CALL_STARTED_AND_ENDED
+            } else {
+                return .CALL_ENDED
+            }
         } else {
             return .NOTHING
         }
@@ -85,6 +89,8 @@ class PhoneStateHandler: NSObject, FlutterStreamHandler, CXCallObserverDelegate 
                 startDurationTimer()
             }
         case .CALL_ENDED:
+            stopDurationTimer()
+        case .CALL_STARTED_AND_ENDED:
             stopDurationTimer()
         default:
             break

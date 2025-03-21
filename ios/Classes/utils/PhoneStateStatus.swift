@@ -10,5 +10,6 @@ enum PhoneStateStatus: String{
     case CALL_OUTGOING
     case CALL_INCOMING
     case CALL_STARTED
+    case CALL_STARTED_AND_ENDED
     case CALL_ENDED
 }

@@ -116,13 +116,13 @@ class _ExampleState extends State<Example> {
       PhoneStateStatus.CALL_OUTGOING => Icons.add_call,
       PhoneStateStatus.CALL_INCOMING => Icons.add_call,
       PhoneStateStatus.CALL_STARTED => Icons.call,
-      PhoneStateStatus.CALL_ENDED => Icons.call_end,
+      PhoneStateStatus.CALL_STARTED_AND_ENDED || PhoneStateStatus.CALL_ENDED => Icons.call_end,
     };
   }
 
   Color getColor(PhoneStateStatus status) {
     return switch (status) {
-      PhoneStateStatus.NOTHING || PhoneStateStatus.CALL_ENDED => Colors.red,
+      PhoneStateStatus.NOTHING || PhoneStateStatus.CALL_STARTED_AND_ENDED || PhoneStateStatus.CALL_ENDED => Colors.red,
       PhoneStateStatus.CALL_INCOMING || PhoneStateStatus.CALL_OUTGOING => Colors.green,
       PhoneStateStatus.CALL_STARTED => Colors.orange,
     };

@@ -5,5 +5,6 @@ enum class PhoneStateStatus {
     CALL_OUTGOING,
     CALL_INCOMING,
     CALL_STARTED,
+    CALL_STARTED_AND_ENDED,
     CALL_ENDED,
 }
