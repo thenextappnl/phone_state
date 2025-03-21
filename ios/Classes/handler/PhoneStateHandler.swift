@@ -24,12 +24,16 @@ class PhoneStateHandler: NSObject, FlutterStreamHandler, CXCallObserverDelegate 
     }
 
     private func getCallState(from call: CXCall) -> PhoneStateStatus {
+
+
         if call.isOutgoing == false && call.hasConnected == false && call.hasEnded == false {
             return .CALL_INCOMING
+        } else if call.isOutgoing == true && call.hasConnected == false && call.hasEnded == false {
+            return .CALL_OUTGOING
         } else if (call.isOutgoing == false && call.hasConnected == true && call.hasEnded == false)
-                    || (call.hasConnected == true && call.hasEnded == false && call.isOnHold == false) {
+            || (call.hasConnected == true && call.hasEnded == false && call.isOnHold == false) {
             return .CALL_STARTED
-        } else if call.isOutgoing == false && call.hasEnded == true {
+        } else if call.hasEnded == true {
             return .CALL_ENDED
         } else {
             return .NOTHING

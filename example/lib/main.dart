@@ -113,6 +113,7 @@ class _ExampleState extends State<Example> {
   IconData getIcons(PhoneStateStatus status) {
     return switch (status) {
       PhoneStateStatus.NOTHING => Icons.clear,
+      PhoneStateStatus.CALL_OUTGOING => Icons.add_call,
       PhoneStateStatus.CALL_INCOMING => Icons.add_call,
       PhoneStateStatus.CALL_STARTED => Icons.call,
       PhoneStateStatus.CALL_ENDED => Icons.call_end,
@@ -122,7 +123,7 @@ class _ExampleState extends State<Example> {
   Color getColor(PhoneStateStatus status) {
     return switch (status) {
       PhoneStateStatus.NOTHING || PhoneStateStatus.CALL_ENDED => Colors.red,
-      PhoneStateStatus.CALL_INCOMING => Colors.green,
+      PhoneStateStatus.CALL_INCOMING || PhoneStateStatus.CALL_OUTGOING => Colors.green,
       PhoneStateStatus.CALL_STARTED => Colors.orange,
     };
   }
